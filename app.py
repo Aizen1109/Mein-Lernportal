@@ -33,11 +33,16 @@ st.markdown("""
 # ------------------------------------------------------------------------------
 st.sidebar.title("🤖 Agenten-Steuerung")
 
-# API Key Eingabe
-api_key = st.sidebar.text_input("Gemini API Key", type="password", help="Trage hier deinen Google Gemini API Key ein.")
+# API Key automatisch aus den Streamlit Secrets laden oder manuell eingeben
+api_key = st.secrets.get("GEMINI_API_KEY") or st.sidebar.text_input(
+    "Gemini API Key", 
+    type="password", 
+    help="Trage hier deinen Google Gemini API Key ein oder hinterlege ihn in den Streamlit Secrets."
+)
+
 if not api_key:
-    st.sidebar.warning("⚠️ Bitte gib deinen Gemini API Key ein, um zu starten.")
-    st.info("👋 Willkommen in deinem persönlichen AI-Lernportal! Bitte gib links deinen API-Key ein.")
+    st.sidebar.warning("⚠️ Bitte hinterlege deinen API Key in den Streamlit Secrets oder trage ihn oben ein.")
+    st.info("👋 Willkommen in deinem persönlichen AI-Lernportal! Bitte trage deinen API-Key ein, um zu starten.")
     st.stop()
 
 client = genai.Client(api_key=api_key)
