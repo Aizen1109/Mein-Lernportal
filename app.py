@@ -144,7 +144,7 @@ Lernstoff:
 Formatiere die Fragen klar und verständlich."""
 
                 response = client.models.generate_content(
-                    model="gemini-2.5-flash",
+                    model="gemini-3.6-flash",
                     contents=[quiz_prompt]
                 )
                 st.session_state["current_quiz"] = response.text
@@ -172,7 +172,7 @@ Antworten des Studenten:
 Gib eine detaillierte Korrektur, vergib Punkte/Prozentangaben und erkläre eventuelle Fehler genau."""
 
                         eval_response = client.models.generate_content(
-                            model="gemini-2.5-flash",
+                            model="gemini-3.6-flash",
                             contents=[eval_prompt]
                         )
                         st.markdown("### 🎯 Bewertung & Korrektur:")
